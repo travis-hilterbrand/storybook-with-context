@@ -5,10 +5,11 @@ export enum TestComponentsVariants {
   secondary = 'secondary',
 };
 
-export interface onTestComponentChangeEvent {
+
+export type onTestComponentChangeEvent = {
   value: string
 };
-export type onTestComponentChange = (e: onTestComponentChangeEvent) => void | undefined;
+export type onTestComponentChange = (event: onTestComponentChangeEvent) => void | undefined;
 
 interface TestComponentProps {
   /**
@@ -29,7 +30,7 @@ interface TestComponentProps {
   variant: TestComponentsVariants
   /**
    * Triggered when user changes value
-   * @param {onTestComponentChangeEvent} e - Changed value
+   * @param {onTestComponentChangeEvent} event - Changed value
    */
   onChange: onTestComponentChange
 };
@@ -41,7 +42,7 @@ const TestComponentDefaultProps = {
   onChange: function() {},
 };
 
-const TestComponent = (props: TestComponentProps) => {
+export const TestComponent = (props: TestComponentProps) => {
   const { id, label, value, variant, onChange } = props;
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (typeof onChange === 'function') {
